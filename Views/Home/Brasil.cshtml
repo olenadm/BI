@@ -1,0 +1,235 @@
+﻿Search or jump to…
+Web-BIMagistral
+BIMagistral
+Views
+Home
+Brasil.cshtml
+@using BIMagistral.Helpers
+@using BIMagistral.Models
+@{
+    var session = new HttpContextAccessor().HttpContext!.Session;
+    ViewData["Title"] = "Brasil";
+    
+    var listFatUF = (List<FatUF>)(ViewBag.FatUF ?? new List<FatUF>());
+    listFatUF = listFatUF.OrderByDescending(x => x.VRFATURAMENTO).ToList();
+}
+
+@* Filtros *@
+<form method="post" id="frm" asp-controller="Home" asp-action="Brasil">
+    <div class="row">
+        <div class="col-lg-2">
+            <label class="font-weight-bold">Data Inicial:</label>
+            <input type="text" name="dtInicio" required class="form-control mask_date" value="@ViewBag.DtInicio" />
+        </div>
+        <div class="col-lg-2">
+            <label class="font-weight-bold">Data Final:</label>
+            <input type="text" name="dtFim" required class="form-control mask_date" value="@ViewBag.DtFim" />
+        </div>
+        <div class="col-lg-3">
+            <label class="font-weight-bold">Linha:</label>
+            <select class="form-control" name="linha">
+                <option value="">-- TODOS --</option>
+                @foreach (Linha o in (List<Linha>)ViewBag.Linhas)
+                {
+                    if (o.CODIGO == ViewBag.Linha)
+                    {
+                        <option value="@o.CODIGO" selected>@o.DESCRICAO</option>
+                    }
+                    else
+                    {
+                        <option value="@o.CODIGO">@o.DESCRICAO</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <label class="font-weight-bold">UF:</label>
+            <select class="form-control" name="uf">
+                <option value="">-- TODOS --</option>
+                @foreach (UF o in (List<UF>)ViewBag.UFs)
+                {
+                    if (o.CODIGO == ViewBag.UF)
+                    {
+                        <option value="@o.CODIGO" selected>@o.CODIGO - @o.DESCRICAO</option>
+                    }
+                    else
+                    {
+                        <option value="@o.CODIGO">@o.CODIGO - @o.DESCRICAO</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <label class="font-weight-bold">&nbsp;</label>
+            <button type="submit" class="btn btn-block btn-info">Aplicar</button>
+        </div>
+    </div>
+</form>
+@* <div class="row mt-3">
+    <div class="col-12">
+        <h2>Brasil</h2>
+    </div>
+</div> *@
+<div class="row mt-3">
+    <div class="col-lg-4">
+        <div class="card  mb-4 h-100">
+        <div class="card-header">
+                <h5 class="card-title mb-1"><span class="lstick d-inline-block align-middle"></span> Estados</h5>
+            </div>
+             <div class="card-body"><canvas id="chart8" style="width: 100%; height: 410px;"></canvas></div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+       <div class="card mb-4 h-100">
+            <div class="card-header">
+                <h5><span class="lstick d-inline-block align-middle"></span> Faturamento por Estado</h5>
+            </div>
+            <div class="card-body"><canvas id="chart9" style="width: 100%; height: 410px;"></canvas></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+   <div class="card my-4">
+      <div class="card-body">
+        <div class="table-responsive rounded">
+            <table class="table table-bordered table-striped mb-0 border-success">
+                <thead class="bg-info text-white">
+                <tr>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Faturamento</th>
+                    <th class="text-center">Part%</th>
+                    <th class="text-center">Transações</th>
+                    <th class="text-center">Ticket Médio</th>
+                    <th class="text-center">Produtos</th>
+                    <th class="text-center">Fornecedores</th>
+                    <th class="text-center">Clientes</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach(var row in listFatUF)
+                {
+                    <tr>
+                        <td class="font-weight-bold">@row.UFDEST</td>
+                        <td class="text-right">@row.VRFATURAMENTO.ToString("#,##0.00")</td>
+                        <td class="text-right">@row.PARTICIPACAO.ToString("#,##0.00")%</td>
+                        <td class="text-right">@row.TRANSACOES.ToString()</td>
+                        <td class="text-right">@row.TICKETMEDIO.ToString("#,##0.00")</td>
+                        <td class="text-right">@row.PRODUTOS.ToString()</td>
+                        <td class="text-right">@row.FORNECEDORES.ToString()</td>
+                        <td class="text-right">@row.CLIENTES.ToString()</td>
+                    </tr>
+                }
+
+                </tbody>
+            </table>
+        </div>
+       </div>
+      </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+
+    <script>
+        var autoLoad = @(ViewData["AutoLoad"]?.ToString()?.ToLower() ?? "false");
+        if (autoLoad) {
+            setTimeout(() => {
+                $('#frm').submit();
+            }, 500);
+        }
+    </script>
+
+    @if (listFatUF.Any())
+    {
+        <script>
+            const ctx8 = document.getElementById('chart8');
+            const data8 = @(Html.Raw(Json.Serialize(listFatUF)));
+            const data8keys = data8.map(x => x.ufdest);
+            const data8values = data8.map(x => x.vrfaturamento);
+            const data8percents = data8.map(x => x.participacao);
+            const vi_tooltip = {
+                                callbacks: {
+                                            label: function(tooltipItems, data) { 
+                                               const vi_percent = Intl.NumberFormat('pt-br').format(data8percents[tooltipItems.dataIndex]); 
+                                               const vi_valor   = Intl.NumberFormat('pt-br').format(data8values[tooltipItems.dataIndex]); 
+                                                var multistringText = [];
+                                                    multistringText.push(tooltipItems.dataset.label+':'+vi_valor);
+                                                    multistringText.push(vi_percent+'%');
+                                                    return multistringText;
+                                             }
+                                }                            
+                            };
+
+
+            new Chart(ctx8, {
+                type: 'pie',
+                data: {
+                    labels: data8keys,
+                    datasets: [{
+                        label: 'Faturamento (R$)',
+                        data: data8values
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: vi_tooltip
+                    }
+                }
+            });
+        </script>
+
+        <script>
+            const ctx9 = document.getElementById('chart9');
+            const data9 = @(Html.Raw(Json.Serialize(listFatUF)));
+            const data9keys = [...new Set(data9.map((x) => x.ufdest))];
+            const data9values = data9.map(x => x.vrfaturamento);
+
+            new Chart(ctx9, {
+                type: 'bar',
+                data: {
+                    labels: data9keys,
+                    datasets: [{
+                        label: 'Faturamento (R$)',
+                        data: data9values,
+                        
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: vi_tooltip
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(R$)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '(UF)'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    }
+
+}

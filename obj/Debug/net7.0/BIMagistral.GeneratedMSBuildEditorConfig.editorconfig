@@ -1,0 +1,91 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BIMagistral
+build_property.RootNamespace = BIMagistral
+build_property.ProjectDir = D:\milton\BIMagistral\BIMagistral\BIMagistral\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\milton\BIMagistral\BIMagistral\BIMagistral
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Home/Brasil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCcmFzaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Home/Fornecedores.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb3JuZWNlZG9yZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Home/Pagamentos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYWdhbWVudG9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Home/Periodo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQZXJpb2RvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Home/Produtos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9kdXRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Home/ProdutosCompras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9kdXRvc0NvbXByYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Home/ProdutosGestao.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9kdXRvc0dlc3Rhby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Home/ProdutosVariacao.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9kdXRvc1ZhcmlhY2FvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Shared/_BusyIndicatorPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9CdXN5SW5kaWNhdG9yUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Shared/_Layout copy 2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQgY29weSAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Shared/_LayoutBlank.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRCbGFuay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Shared/_LayoutLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/milton/BIMagistral/BIMagistral/BIMagistral/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-1ityycdi7m

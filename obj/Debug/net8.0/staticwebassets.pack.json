@@ -1,0 +1,265 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BIMagistral.bundle.scp.css",
+      "PackagePath": "staticwebassets\\BIMagistral.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\css\\Busy.css",
+      "PackagePath": "staticwebassets\\css\\Busy.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\ext\\bootstrap-datepicker.min.js",
+      "PackagePath": "staticwebassets\\ext\\bootstrap-datepicker.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\ext\\bootstrap-datepicker.pt-BR.min.js",
+      "PackagePath": "staticwebassets\\ext\\bootstrap-datepicker.pt-BR.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\ext\\bootstrap-datepicker3.min.css",
+      "PackagePath": "staticwebassets\\ext\\bootstrap-datepicker3.min.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\ext\\datatables.css",
+      "PackagePath": "staticwebassets\\ext\\datatables.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\ext\\datatables.js",
+      "PackagePath": "staticwebassets\\ext\\datatables.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\ext\\jquery.mask.min.js",
+      "PackagePath": "staticwebassets\\ext\\jquery.mask.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\ext\\maskmoney.js",
+      "PackagePath": "staticwebassets\\ext\\maskmoney.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\img\\IdiomaBr.png",
+      "PackagePath": "staticwebassets\\img\\IdiomaBr.png"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\img\\IdiomaEn.png",
+      "PackagePath": "staticwebassets\\img\\IdiomaEn.png"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\img\\bg-login.jpg",
+      "PackagePath": "staticwebassets\\img\\bg-login.jpg"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\img\\bg-login2.jpg",
+      "PackagePath": "staticwebassets\\img\\bg-login2.jpg"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\img\\favicon.png",
+      "PackagePath": "staticwebassets\\img\\favicon.png"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\img\\logo.png",
+      "PackagePath": "staticwebassets\\img\\logo.png"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\img\\mais.png",
+      "PackagePath": "staticwebassets\\img\\mais.png"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\js\\app.js",
+      "PackagePath": "staticwebassets\\js\\app.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\js\\jquery.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\js\\timeSolver.js",
+      "PackagePath": "staticwebassets\\js\\timeSolver.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\js\\timeSolver.min.js",
+      "PackagePath": "staticwebassets\\js\\timeSolver.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\milton\\BIMagistral\\BIMagistral\\BIMagistral\\wwwroot\\lib\\jquery\\mask\\jquery.mask.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\mask\\jquery.mask.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BIMagistral.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BIMagistral.props",
+      "PackagePath": "build\\BIMagistral.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BIMagistral.props",
+      "PackagePath": "buildMultiTargeting\\BIMagistral.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BIMagistral.props",
+      "PackagePath": "buildTransitive\\BIMagistral.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

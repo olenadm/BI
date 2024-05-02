@@ -1,0 +1,306 @@
+﻿@using BIMagistral.Helpers
+@using BIMagistral.Models
+@{
+    var session = new HttpContextAccessor().HttpContext!.Session;
+    ViewData["Title"] = "Período";
+    
+    var listFatPeriodo = (List<FatPeriodo>)(ViewBag.FatPeriodo ?? new List<FatPeriodo>());
+    var listFatPeriodo_lista = listFatPeriodo.OrderByDescending(x => x.ANO).ThenByDescending(x => x.MES).ToList();
+    listFatPeriodo = listFatPeriodo.OrderBy(x => x.ANO).ThenBy(x => x.MES).ToList();
+    
+    var listFatLinhas = (List<FatLinha>)(ViewBag.FatLinhas ?? new List<FatLinha>());
+    listFatLinhas = listFatLinhas
+        .Where(x => new DateTime(x.ANO, x.MES, 1) >= DateTime.Today.AddMonths(-6))
+        .OrderBy(x => x.LINHA)
+        .ThenBy(x => x.ANO)
+        .ThenBy(x => x.MES)
+        .ToList(); 
+}
+
+@* Filtros *@
+@*<form method="post" id="frm" asp-controller="Home" asp-action="Periodo">"*@
+<form method="post" id="frm" asp-controller="Home" asp-action="Periodo">
+    <div class="row">
+        <div class="col-lg-2">
+            <label class="font-weight-bold">Data Inicial:</label>
+            <input type="text" name="dtInicio" required class="form-control mask_date" value="@ViewBag.DtInicio" />
+        </div>
+        <div class="col-lg-2">
+            <label class="font-weight-bold">Data Final:</label>
+            <input type="text" name="dtFim" required class="form-control mask_date" value="@ViewBag.DtFim" />
+        </div>
+        <div class="col-lg-3">
+            <label class="font-weight-bold">Linha:</label>
+            <select class="form-control" name="linha">
+                <option value="">-- TODOS --</option>
+                @foreach (Linha o in (List<Linha>)ViewBag.Linhas)
+                {
+                    if (o.CODIGO == ViewBag.Linha)
+                    {
+                        <option value="@o.CODIGO" selected>@o.DESCRICAO</option>
+                    }
+                    else
+                    {
+                        <option value="@o.CODIGO">@o.DESCRICAO</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <label class="font-weight-bold">UF:</label>
+            <select class="form-control" name="uf">
+                <option value="">-- TODOS --</option>
+                @foreach (UF o in (List<UF>)ViewBag.UFs)
+                {
+                    if (o.CODIGO == ViewBag.UF)
+                    {
+                        <option value="@o.CODIGO" selected>@o.CODIGO - @o.DESCRICAO</option>
+                    }
+                    else
+                    {
+                        <option value="@o.CODIGO">@o.CODIGO - @o.DESCRICAO</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <label class="font-weight-bold">&nbsp;</label>
+            <button type="submit" class="btn btn-block btn-info">Aplicar</button>
+        </div>
+    </div>
+</form>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header">                
+                 <h5 class="card-title mb-1"><span class="lstick d-inline-block align-middle"></span> Faturamento por Período</h5>
+            </div>
+
+            <div class="card-body"><canvas id="chart1" style="width: 100%; height: 205px;"></canvas></div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+    <div class="card  mb-4">
+        <div class="card-body">
+
+        <div class="table-responsive rounded">
+            <table class="table table-striped table-bordered">
+                <thead class="bg-gradient-success text-white">
+                <tr>
+                    <th class="text-center">Mês</th>
+                    <th class="text-center">Faturamento</th>
+                    <th class="text-center">Transações</th>
+                    <th class="text-center">Ticket Médio</th>
+                    <th class="text-center">Produtos</th>
+                    <th class="text-center">Fornecedores</th>
+                    <th class="text-center">Clientes</th>
+                    <th class="text-center">UFs</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach(var row in listFatPeriodo_lista)
+                {
+                    <tr> 
+                        <td class="text-center">@row.MES.ToString("D2")/@row.ANO.ToString()</td>
+                        <td class="text-right">@row.VRFATURAMENTO.ToString("#,##0.00")</td>
+                        <td class="text-center">@row.TRANSACOES.ToString()</td>
+                        <td class="text-right">@row.TICKETMEDIO.ToString("#,##0.00")</td>
+                        <td class="text-center">@row.PRODUTOS.ToString()</td>
+                        <td class="text-center">@row.FORNECEDORES.ToString()</td>
+                        <td class="text-center">@row.CLIENTES.ToString()</td>
+                        <td class="text-center">@row.UFS.ToString()</td>
+                    </tr>
+                }
+
+                </tbody>
+            </table>
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card mb-5">
+            <div class="card-header">              
+                 <h5 class="card-title mb-1"><span class="lstick d-inline-block align-middle"></span> Faturamento por Linhaso</h5>
+
+            </div>
+            <div class="card-body">
+                <canvas id="chartLinhas" style="width: 100%; height: 205px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+
+    <script>
+        var autoLoad = @(ViewData["AutoLoad"]?.ToString()?.ToLower() ?? "false");
+        if (autoLoad) {
+            setTimeout(() => {
+                $('#frm').submit();
+            }, 500);
+        }
+    </script>
+    
+    @if (listFatPeriodo.Any())
+    {
+        <script>
+
+            const ctx1 = document.getElementById('chart1');
+            const data1 = @(Html.Raw(Json.Serialize(listFatPeriodo)));
+            const data1keys = data1.map(x => x.mes.toString().padStart(2, '0') + '/' + x.ano);
+            const data1values = data1.map(x => x.vrfaturamento);
+            // Se colocar o nome correto 'vrfaturamento_anoanterior' ele não reconhece. Bug do data1.map??
+            const data1values_anoanterior = data1.map(x => x.vrfaturamentO_ANOANTERIOR);
+
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        label: 'Faturamento (R$)',
+                        data: data1values, 
+                        borderColor: 'rgb(255, 99, 132)',
+                        @* backgroundColor: 'rgba(255, 99, 132, 0.2)',  *@
+                        backgroundColor: 'rgba(126, 202, 253, 0.8)',  
+                        order: 1
+                    }, 
+                    {
+                        label: 'Ano anterior (R$)',
+                        data: data1values_anoanterior,
+                        type: 'line',
+                        borderColor: 'rgb(251, 162, 0, 1)',  
+                        order: 2
+                    } ], 
+                    labels: data1keys
+                },
+                
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(R$)'
+                            },
+                            stacked: false
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '(Período)'
+                            },
+                            stacked: false
+                        }
+                    }
+                }
+            });
+        </script>
+    }
+
+    @if (listFatLinhas.Any())
+    {
+        <script>
+
+            const ctxLinhas = document.getElementById('chartLinhas');
+            const data2 = @(Html.Raw(Json.Serialize(listFatLinhas)));
+            
+            //const data2_anoanterior = data2.map(x => x.vrfaturamentO_ANOANTERIOR);
+
+            const colorOf = (type) => {
+            switch (type) {
+                case '001':
+                    return 'blue';
+                case '002':
+                    return 'green';
+                case '003':
+                    return 'red';
+                case '998':
+                    return 'orange';
+                default:
+                    return 'gray';
+                }
+            }
+
+            let data2_meses = [...new Set(data2.map((x) => x.mes.toString().padStart(2, '0') + '/' + x.ano))];
+            let data2_legendas = [...new Set(data2.map((x) => x.descricao))];
+
+            let datasets = data2.reduce(function(acc, cur) {
+                let type = acc.find((x) => x.label == cur.linha);
+                if (type == null) {
+                    let color = colorOf(cur.linha);
+                    type= {
+                            label: cur.descricao,
+                            data: new Array(data2_meses.length).fill(0),
+                            backgroundColor: color,
+                            borderColor: color,
+                            borderWidth: 1,
+                           };
+                    acc.push(type);
+                }
+                type.data[data2_meses.indexOf(cur.mes.toString().padStart(2, '0') + '/' + cur.ano)] = cur.vrfaturamento;  
+                return acc;
+            }, []);
+
+            console.log(data2)
+            console.log(data2_legendas)
+
+            new Chart(ctxLinhas, {
+                type: 'bar',
+                data: {
+                   labels: data2_meses,
+                   datasets: datasets,
+                },
+                options: {
+                    responsive: true,
+                    @* barValueSpacing: 20,  *@
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                filter: (legendItem, chartData) => {
+                                    let entries = chartData.datasets.map(e => e.label);
+                                    return entries.indexOf(legendItem.text) === legendItem.datasetIndex;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(R$)'
+                            },
+                            stacked: false
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '(Período)'
+                            },
+                            stacked: false
+                        }
+                    }
+                }
+            });
+        </script>
+    }
+
+}

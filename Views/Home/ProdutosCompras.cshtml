@@ -1,0 +1,298 @@
+﻿@using BIMagistral.Helpers
+@using BIMagistral.Models
+
+@{
+    var session = new HttpContextAccessor().HttpContext!.Session;
+    ViewData["Title"] = "Produtos Compras";
+}
+
+@*Filtros*@
+<form method="post" id="frm" asp-controller="Home" asp-action="ProdutosCompras">
+    <div class="row">
+        <div class="col-lg-2">
+            <label class="font-weight-bold">Data Inicial:</label>
+            <input type="text" id="dtInicio" required class="form-control mask_date" value="@ViewBag.DtInicio" />
+        </div>
+        <div class="col-lg-2">
+            <label class="font-weight-bold">Data Final:</label>
+            <input type="text" id="dtFim" required class="form-control mask_date" value="@ViewBag.DtFim" />
+        </div>
+        <div class="col-lg-2">
+            <label class="font-weight-bold">Top Compras:</label>
+            <input type="number" id="qtCompras" required class="form-control" value="3" min="1" />
+        </div>
+        <div class="col-lg-2">
+            <label class="font-weight-bold">Top Fornecedores:</label>
+            <input type="number" id="qtFornecedores" required class="form-control" value="6" min="1" />
+        </div>
+    </div>
+</form>
+
+<div class="row mt-3">
+    <div class="col-lg-4">
+        <input type="text" class="form-control" id="filtroProduto" placeholder="Pesquisar produtos..." style="text-transform: uppercase;"></input>
+    </div>
+    <div class="col-lg-2">
+        <button class="btn btn-info" id="btnFiltroProduto">Pesquisar</button>
+    </div>
+    
+</div>
+<div class="row">
+    <div class="col-sm-12">
+       
+                <div id="listaProdutos">
+        
+                </div>
+        
+</div>
+</div>
+
+<div class="row mt-3 mb-3">
+    <div class="col-12">
+        <button class="btn btn-warning" id="btnLimpar">Limpar Tabela</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        
+                            <div id="prodCompras">
+                            </div>
+           
+    </div>
+</div>
+
+<style>
+    th {
+        cursor: pointer;
+    }
+
+    .sort-icon {
+        margin-left: 5px;
+    }
+</style>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script>
+ 
+         function esconderLinha(idDaLinha) {
+            // procura o elemento com o ID passado para a função e coloca o estado para o contrario do estado actual
+            $("#trComprasUF_" + idDaLinha).toggle();
+            $("#trComprasFornecedores_" + idDaLinha).toggle();
+        }        
+
+        function addOrRemoveProd(cod) {
+            const jsDtInicio       = document.getElementById('dtInicio').value;
+            const jsDtFim          = document.getElementById('dtFim').value;
+            const jsQtCompras      = document.getElementById('qtCompras').value;
+            const jsQtFornecedores = document.getElementById('qtFornecedores').value;
+
+            let $input = $(`#produtos input[value="${cod}"]`);
+
+            if ($input.prop('checked')) {
+                $(`#prodCompras${cod}`).remove();
+                $.post('/Home/ProdutosCompras', { codigo: cod, 
+                                                    dtInicio: jsDtInicio, 
+                                                    dtFim: jsDtFim, 
+                                                    qtCompras: jsQtCompras, 
+                                                    qtFornecedores: jsQtFornecedores }, (data) => {
+                    if (data && data.length > 0) {
+
+                        const vi_TopCompras = JSON.parse(data[0].topcompras); 
+
+                        var vi_PrecoMenor = 0;
+                        for (var indexCompras in vi_TopCompras) {
+                            if ((vi_PrecoMenor === 0) || (vi_PrecoMenor > vi_TopCompras[indexCompras].PRECOUNITARIOLIQ)){
+                                vi_PrecoMenor = vi_TopCompras[indexCompras].PRECOUNITARIOLIQ;
+                            }
+                        }
+
+                        const vi_TopFornecedores = JSON.parse(data[0].topfornecedores); 
+                        const vi_TabelaFornecedores = 'prodComprasFornecedores'+cod; 
+
+                        $('#prodCompras').append(`
+                        <div class="card my-4">
+                             <div class="card-body">
+                            <div class="table-responsive rounded">
+                            <table id="prodCompras${cod}" class="table table-striped table-bordered">
+                            <thead class="bg-info text-white">
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center">Código</th>
+                                    <th class="text-center">Produto</th>
+                                    <th class="text-center">Fornecedores</th>
+                                    <th class="text-center">Menor Preço</th>
+                                    @* <th class="text-center bg-white text-info">Preço Bonif</th>
+                                    <th class="text-center bg-white text-info">%Bonif(Quant)</th>
+                                    <th class="text-center bg-white text-info">Preço Líquido</th> *@
+                                </tr>
+                            </thead>
+
+                                <tr id="tr_${cod}">
+                                    <td>
+                                        <button onClick="esconderLinha(${cod})" class="btn btn-success btn-sm btn-rounded">
+                                            +
+                                        </button>
+                                    </td>
+                                    <td>${data[0].codigo}</td>
+                                    <td>${data[0].produto}</td>
+                                    <td class="text-center">${data[0].fornecedores}</td>
+                                    @* <td class="text-right">${numberToString(data[0].precomenor)}</td>*@
+                                    @* <td class="text-right bg-white">${numberToString(vi_TopCompras[0].PRECOUNITARIOLIQ)}</td>  *@
+                                    <td class="text-right bg-white">${numberToString(vi_PrecoMenor)}</td>
+                                    @* <td class="text-right bg-white">${numberToString(vi_TopCompras[0].PRECOUNITARIO)}</td>
+                                    <td class="text-right bg-white">${numberToString(vi_TopCompras[0].PTBONIFQT)}%</td>
+                                    <td class="text-right bg-white">${numberToString(vi_TopCompras[0].PRECOUNITARIOLIQ)}</td> *@
+                                </tr>
+                                <tr id="trComprasUF_${cod}" style="display: none">
+                                   <td colspan="8">
+                                      <table id="prodComprasUF${cod}" class="table table-striped table-bordered">
+                                      </table>
+                                   </td>                                
+                                </tr>
+                                <tr id="trComprasFornecedores_${cod}" style="display: none">
+                                   <td colspan="8">
+                                      <table id="${vi_TabelaFornecedores}" class="table table-striped table-bordered">
+                                      </table>
+                                   </td>                                
+                                </tr>
+                            </table>
+                            </div>
+                        </div>
+                        </div>
+                        `);
+
+                        if (vi_TopFornecedores && vi_TopFornecedores.length > 0) {
+                        $(`#${vi_TabelaFornecedores}`).append(`
+                              <tr>
+                                <th class="text-center text-info">CNPJ</th>
+                                <th class="text-center text-info" onclick="sortTable(${vi_TabelaFornecedores}, 1, 'false')">Fornecedor <span class="sort-icon">&#x2195;</span></th>
+                                <th class="text-right text-info" onclick="sortTable(${vi_TabelaFornecedores}, 2, 'true')">Quantde <span class="sort-icon">&#x2195;</span></th>
+                                <th class="text-center text-info">Unidade</th>
+                                <th class="text-right text-info" onclick="sortTable(${vi_TabelaFornecedores}, 4, 'true')">Faturamento <span class="sort-icon">&#x2195;</span></th>
+                                <th class="text-right text-info" onclick="sortTable(${vi_TabelaFornecedores}, 5, 'true')">Preço Médio <span class="sort-icon">&#x2195;</span></th>
+                                <th class="text-right bg-white text-info" onclick="sortTable(${vi_TabelaFornecedores}, 6, 'true')">%Bonif.<span class="sort-icon">&#x2195;</span></th>
+                                <th class="text-right bg-white text-info" onclick="sortTable(${vi_TabelaFornecedores}, 7, 'true')">Menor Preço <span class="sort-icon">&#x2195;</span></th>
+                              </tr>
+                            `); 
+
+                            for (var indexFornecedor in vi_TopFornecedores) {
+
+                                $(`#${vi_TabelaFornecedores}`).append(`
+                                    <tr>
+                                        <td class="text-center">${vi_TopFornecedores[indexFornecedor].CNPJFABR}</td>
+                                        <td class="text-left">${vi_TopFornecedores[indexFornecedor].APELIDO}</td>
+                                        <td class="text-right">${numberToString(vi_TopFornecedores[indexFornecedor].QUANTIDADE)}</td>
+                                        <td class="text-center">${vi_TopFornecedores[indexFornecedor].UNESTOQUE}</td>
+                                        <td class="text-right">${numberToString(vi_TopFornecedores[indexFornecedor].VRFATURAMENTO)}</td>
+                                        <td class="text-right">${numberToString(vi_TopFornecedores[indexFornecedor].PRECOMEDIO)}</td>
+                                        <td class="text-right bg-white">${numberToString(vi_TopFornecedores[indexFornecedor].PTBONIFQT)}%</td>
+                                        <td class="text-right bg-white">${numberToString(vi_TopFornecedores[indexFornecedor].VRUNESTOQUELIQ)}</td>
+                                    </tr>
+                                `);
+                            }  
+
+                        }
+                    
+                        if (vi_TopCompras && vi_TopCompras.length > 0) {
+                           $('#prodComprasUF'+cod).append(`
+                              <tr>
+                                @*<th class="text-center text-info">ID</th>*@
+                                <th class="text-center text-info">UF</th>
+                                <th class="text-center text-info">Data</th>
+                                <th class="text-center text-info">Fornecedor</th>
+                                <th class="text-right text-info">Quantidade</th>
+                                <th class="text-center text-info">Unidade</th>
+                                <th class="text-right text-info">Preço Unitário</th>
+                                <th class="text-right bg-white text-info">%Bonif.</th>
+                                <th class="text-right bg-white text-info">Preço Unitário(Líq)</th>
+                                <th class="text-center text-info">Cond.Pag</th>
+                                <th class="text-center text-info">% ICMS</th>
+                                <th class="text-center text-info">Validade</th>
+                              </tr>
+                            `); 
+
+                            for (var indexCompra in vi_TopCompras) {
+
+                                let   vi_DataAux     = new Date(vi_TopCompras[indexCompra].DATACOMPRA+"T00:00:00-07:00");
+                                const vi_DataCompra  = new Intl.DateTimeFormat('pt-br').format(vi_DataAux);
+                                let vi_DataValidade  = '';
+                                if (vi_TopCompras[indexCompra].DATAVALIDADE !== null) 
+                                {
+                                   vi_DataAux       = new Date(vi_TopCompras[indexCompra].DATAVALIDADE+"T00:00:00-07:00");
+                                   vi_DataValidade  = new Intl.DateTimeFormat('pt-br').format(vi_DataAux).substring(3,10);
+                                } 
+
+                                $('#prodComprasUF'+cod).append(`
+                                    <tr>
+                                        @*<td align="center">${vi_TopCompras[indexCompra].ID}</td>*@
+                                        <td align="center">${vi_TopCompras[indexCompra].UF}</td>
+                                        <td align="center">${vi_DataCompra}</td>
+                                        <td>${vi_TopCompras[indexCompra].APELIDO}</td>
+                                        <td align="right">${numberToString(vi_TopCompras[indexCompra].QUANTIDADE)}</td>
+                                        <td align="center">${vi_TopCompras[indexCompra].UNESTOQUE}</td>
+                                        <td align="right">${numberToString(vi_TopCompras[indexCompra].PRECOUNITARIO)}</td>
+                                        <td class="text-right bg-white">${numberToString(vi_TopCompras[indexCompra].PTBONIFQT)}%</td>
+                                        <td class="text-right bg-white">${numberToString(vi_TopCompras[indexCompra].PRECOUNITARIOLIQ)}</td>
+                                        <td align="center">${vi_TopCompras[indexCompra].CONDPAG}</td>
+                                        <td align="center">${vi_TopCompras[indexCompra].PTICMS.toString()}</td>
+                                        <td align="center">${vi_DataValidade}</td>
+                                    </tr>
+                                `);
+                            }   
+                        }
+                    
+                    }
+
+
+                    else{
+                        $('#msg_'+cod).html(`<span class="badge badge-opacity-danger">(sem movimento)</span>`);
+                    }
+                });
+            }
+            else{
+                //$(`#tr_${cod}`).remove();
+                $(`#prodCompras${cod}`).remove();
+                //$(`#prodComprasUF${cod}`).remove();
+                //$(`#prodComprasFornecedores${cod}`).remove();
+            }
+        }
+        
+        $('#btnLimpar').click(() => {
+            $('#prodCompras').empty();
+        });
+        
+        $('#btnFiltroProduto').click(() => {
+
+            let produtos = $.trim($('#filtroProduto').val());
+            if (produtos) {
+                
+                $('#btnFiltroProduto').prop('disabled', true);
+                $('#listaProdutos').html(`<div class="text-left text-info font-weight-bold"><i class="fas fa-spinner fa-spin"></i> Buscando...</div>`);
+                
+                $.post('/Home/FiltroProduto', { descricao: produtos }, (data) => {
+                    $('#btnFiltroProduto').prop('disabled', false);
+                    if (data && data.length > 0) {
+                        $('#listaProdutos').empty();
+                        $('#listaProdutos').html(`<div class="card  mt-4"><div class="card-body"><div class="list-group" id="produtos"></div></div></div>`);
+                        data.forEach(item => {
+                            $('#produtos').append(`<div class="list-group-item list-group-item-light"><div class="form-check"><input type="checkbox" onchange="addOrRemoveProd(${item.codigo})" value="${item.codigo}"  class="form-check-input mr-3" /> ${item.descricao} <span id="msg_${item.codigo}"></span></div></div>`);
+                        });
+                    }
+                    else {
+                        $('#listaProdutos').html(`<div class="text-left text-danger">Nenhum produto encontrado</div>`);
+                    }
+                });
+            }
+            else{
+                $('#listaProdutos').empty();
+            }
+        });
+
+        
+    </script>
+
+}
