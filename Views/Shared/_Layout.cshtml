@@ -176,7 +176,8 @@
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto align-items-center">
-                <li class="nav-item"> <span class="d-none d-md-block d-lg-block text-gray-600">Bom dia,  <span class="text-black">@user!.usuario.nome !</span> </span></li>
+                <!--li class="nav-item"> <span class="d-none d-md-block d-lg-block text-gray-600">Bom dia,  <span class="text-black">@user!.usuario.nome !</span> </span></!--li-->
+                <li class="nav-item text-info d-none d-md-block d-lg-block d-xl-block">Home / @ViewData["Title"]</li>
                     
                  <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -222,7 +223,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <div class="position-relative overflow-hidden mb-4 card d-none d-md-block d-lg-block d-xl-block">
+                <!--div class="position-relative overflow-hidden mb-4 card d-none d-md-block d-lg-block d-xl-block">
                   <div class="card-header py-2">
                    <div class="d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0 text-info lh-0"><span class="lstick d-inline-block align-middle"></span> @ViewData["Title"] </h5>
@@ -232,7 +233,7 @@
                   </ol>
                 </div>
                 </div>
-                </div>
+                </!--div-->
 
                 <main role="main" class="pb-3 pt-1 mt-3 h-100">
                     @RenderBody()
