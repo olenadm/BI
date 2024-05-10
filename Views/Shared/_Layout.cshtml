@@ -73,22 +73,6 @@
         </li>
 
 
- <!-- Nav Item - Pages Collapse Menu -->
-         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
-                </div>
-            </div>
-        </li>
-
         <li class="nav-item">
             <a class="nav-link" asp-controller="Home" asp-action="Periodo">
                 <i class="fas fa-calendar-alt"></i>
@@ -96,25 +80,20 @@
             </a>
         </li>
         
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="Home" asp-action="Produtos">
-                <i class="fas fa-box-open"></i>
-                <span>Produtos Ranking</span>
+         <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProdutos"
+                aria-expanded="true" aria-controls="collapseProdutos">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Produtos</span>
             </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="Home" asp-action="ProdutosGestao">
-                <i class="fas fa-box-open"></i>
-                <span>Produtos Gestão</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="Home" asp-action="ProdutosCompras">
-                <i class="fas fa-box-open"></i>
-                <span>Produtos Compras</span>
-            </a>
+            <div id="collapseProdutos" class="collapse" aria-labelledby="headingProdutos" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Produtos:</h6>
+                    <a class="collapse-item" asp-action="Produtos">Ranking</a>
+                    <a class="collapse-item" asp-action="ProdutosGestao">Gestão</a>
+                    <a class="collapse-item" asp-action="ProdutosCompras">Compras</a>
+                </div>
+            </div>
         </li>
 
         @* <li class="nav-item">
