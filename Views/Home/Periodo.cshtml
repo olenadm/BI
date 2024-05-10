@@ -156,6 +156,8 @@
     @if (listFatPeriodo.Any())
     {
         <script>
+        Chart.defaults.font.family = "Manrope";
+        Chart.defaults.color = "#000";
 
             const ctx1 = document.getElementById('chart1');
             const data1 = @(Html.Raw(Json.Serialize(listFatPeriodo)));
@@ -163,6 +165,10 @@
             const data1values = data1.map(x => x.vrfaturamento);
             // Se colocar o nome correto 'vrfaturamento_anoanterior' ele não reconhece. Bug do data1.map??
             const data1values_anoanterior = data1.map(x => x.vrfaturamentO_ANOANTERIOR);
+
+          const data7colors = ['#e4f4f3', '#cfecf1', '#b9e5ec', '#a1dee4', '#87d7d9', '#6ad0cc', '#4bc8cd', '#34bfc6', '#00b6bc'];
+
+
 
             new Chart(ctx1, {
                 type: 'bar',
@@ -172,7 +178,9 @@
                         data: data1values, 
                         borderColor: 'rgb(255, 99, 132)',
                         @* backgroundColor: 'rgba(255, 99, 132, 0.2)',  *@
-                        backgroundColor: 'rgba(126, 202, 253, 0.8)',  
+                        @*backgroundColor: 'rgba(126, 202, 253, 0.8)',  *@
+                         backgroundColor:  data7colors,
+                         borderRadius:5,
                         order: 1
                     }, 
                     {
@@ -222,19 +230,22 @@
             const data2 = @(Html.Raw(Json.Serialize(listFatLinhas)));
             
             //const data2_anoanterior = data2.map(x => x.vrfaturamentO_ANOANTERIOR);
+          //const contrastcolors =['#00429d', '#3e67ae', '#618fbf', '#85b7ce', '#b1dfdb', '#ffcab9', '#fd9291', '#e75d6f', '#c52a52', '#93003a'];
+
+
 
             const colorOf = (type) => {
             switch (type) {
                 case '001':
-                    return 'blue';
+                    return '#00429d';
                 case '002':
-                    return 'green';
+                    return '#0083a7';
                 case '003':
-                    return 'red';
+                    return '#00c4b0';
                 case '998':
-                    return 'orange';
+                    return '#ff6b95';
                 default:
-                    return 'gray';
+                    return '#93003a';
                 }
             }
 
@@ -251,6 +262,8 @@
                             backgroundColor: color,
                             borderColor: color,
                             borderWidth: 1,
+                            borderRadius:5,
+                            barThickness: 12
                            };
                     acc.push(type);
                 }

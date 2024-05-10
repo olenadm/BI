@@ -145,6 +145,11 @@
     @if (listFatFornecedores.Any())
     {
         <script>
+        Chart.defaults.font.family = "Manrope";
+        Chart.defaults.color = "#000";
+
+          const data7colors =['#00429d', '#3e67ae', '#618fbf', '#85b7ce', '#b1dfdb', '#ffcab9', '#fd9291', '#e75d6f', '#c52a52', '#93003a'];
+
             const ctx6 = document.getElementById('chart6');
             const data6 = @(Html.Raw(Json.Serialize(listTopFornecedor)));
             const data6keys = data6.map(x => x.fornecedor);
@@ -169,7 +174,9 @@
                     labels: data6keys,
                     datasets: [{
                         label: 'Faturamento (R$)',
-                        data: data6values
+                        data: data6values,
+                        backgroundColor: data7colors, 
+                        borderColor: '#eee'
                     }] 
                 },
                 options: {
@@ -182,14 +189,15 @@
                                         
                 }    
             });
-        </script>
-
-        <script>
+        
             const ctx7 = document.getElementById('chart7');
             const data7 = @(Html.Raw(Json.Serialize(listTopFornecedor)));
             const data7keys = [...new Set(data7.map((x) => x.fornecedor))];
             const data7values = data7.map(x => x.vrfaturamento);
-            const data7colors = data7.map(x => x.corgrafico);
+            //const data7colors = data7.map(x => x.corgrafico);
+            
+         
+
 
             new Chart(ctx7, {
                 type: 'bar',
@@ -198,7 +206,9 @@
                     datasets: [{
                         label: 'Faturamento (R$)',
                         data: data7values,
-                        color: data7colors, 
+                        backgroundColor: data7colors, 
+                        borderColor: '#eee',
+                        borderRadius:5
                         
                     }]
                 },
@@ -223,7 +233,13 @@
                             title: {
                                 display: true,
                                 text: '(Fornecedor)'
-                            }
+                            },
+                            /* ticks: {
+                             maxTicksLimit: 20,
+                             autoSkip: false,
+                             maxRotation: 50,
+                             minRotation: 50
+                        }*/
                         }
                     }
                 }

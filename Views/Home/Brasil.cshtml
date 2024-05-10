@@ -148,6 +148,12 @@ Brasil.cshtml
     @if (listFatUF.Any())
     {
         <script>
+
+        Chart.defaults.font.family = "Manrope";
+        Chart.defaults.color = "#000";
+
+          const data7colors = ['#00429d', '#0083a7', '#00c4b0', '#ff6b95', '#93003a'];
+
             const ctx8 = document.getElementById('chart8');
             const data8 = @(Html.Raw(Json.Serialize(listFatUF)));
             const data8keys = data8.map(x => x.ufdest);
@@ -173,7 +179,9 @@ Brasil.cshtml
                     labels: data8keys,
                     datasets: [{
                         label: 'Faturamento (R$)',
-                        data: data8values
+                        data: data8values,
+                        backgroundColor: data7colors, 
+                        borderColor: '#eee'
                     }]
                 },
                 options: {
@@ -186,9 +194,9 @@ Brasil.cshtml
                     }
                 }
             });
-        </script>
 
-        <script>
+
+     
             const ctx9 = document.getElementById('chart9');
             const data9 = @(Html.Raw(Json.Serialize(listFatUF)));
             const data9keys = [...new Set(data9.map((x) => x.ufdest))];
@@ -201,6 +209,9 @@ Brasil.cshtml
                     datasets: [{
                         label: 'Faturamento (R$)',
                         data: data9values,
+                        backgroundColor: data7colors, 
+                        borderColor: '#eee',
+                        borderRadius:5
                         
                     }]
                 },
