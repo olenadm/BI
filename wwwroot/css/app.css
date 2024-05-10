@@ -1831,6 +1831,58 @@ fieldset:disabled a.btn {
             color: #fff;
         }
 
+.login-page .card {
+    background-color: rgba(255,255,255,0.8);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+    .login-page .card h3 {
+        background: linear-gradient(135deg, rgb(71, 215, 104), #04cafa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+.login-page .card, .login-page .card-footer {border-radius:15px;}
+
+.login-page .card-footer a:link {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    padding: 5px 0;
+    line-height: 1;
+    font-weight: 500;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient( to right, var(--primary), var(--success) 50%, var(--cyan) 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    transition: all 0.3s ease-in-out;
+}
+
+    .login-page .card-footer a:link::before {
+        display:inline-block;
+        content: '';
+        width: 0;
+        height: 2px;
+        bottom: 5px;
+        left: 0;
+        bottom: -3px;
+        z-index: 0;
+        position: absolute;
+        background: var(--info);
+        transition: all 0.3s ease-in-out;
+    }
+
+.login-page .card-footer a:hover {
+    background-position: 0%;
+}
+   
+
+
+    .login-page .card-footer a:hover::before{ width:100%}
+
+
+
+
+
 .card {
     word-wrap: break-word;
     background-color: #fff;
@@ -2433,7 +2485,7 @@ button.bg-dark:focus {
 
 
 .border-primary {
-    border-color: #005BAC !important;
+    border-color: var(--primary) !important;
 }
 
 .border-secondary {
@@ -3197,7 +3249,8 @@ a:focus {
     -webkit-transition: width 0.25s ease, background 0.25s ease;
     -moz-transition: width 0.25s ease, background 0.25s ease;
     -ms-transition: width 0.25s ease, background 0.25s ease;
-    background-color: var(--dark)!important;
+    /*background-color: var(--dark) !important;*/
+    background-color: rgb( 1,67,83 )!important;
 }
 
 
